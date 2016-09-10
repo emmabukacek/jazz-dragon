@@ -12,10 +12,8 @@ def test_cli_without_config(mockSettingsExist,
     """
     'dragon' command without API configuration
 
-    If I run the 'dragon' command,
-    and I haven't set up my configuration yet,
-    then I should be prompted to set it up.
-
+    It should prompt the user to set up their
+    configuration.
     """
     runner = CliRunner()
     result = runner.invoke(cli)
@@ -34,9 +32,8 @@ def test_cli_with_config(mockSettingsExist,
     """
     'dragon' command with API configuration
 
-    If I run the 'dragon' command,
-    and I have set up my configuration,
-    then it should show all application options.
+    It should show the user available application
+    options.
     """
     runner = CliRunner()
     result = runner.invoke(cli)
