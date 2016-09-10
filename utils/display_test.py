@@ -13,9 +13,9 @@ def test_display_logo(require, click_secho):
         version = 'Derp'
 
     mock_package = Package()
-
     versionDisplay = 'Version: ' + mock_package.version + '\n'
     require.return_value = [mock_package]
+
     display_logo()
 
     click_secho.assert_has_calls([
