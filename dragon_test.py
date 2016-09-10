@@ -19,7 +19,7 @@ def test_cli_without_config(mockSettingsExist,
     result = runner.invoke(cli)
 
     assert result.exit_code == 0
-    assert mockShowOptions.not_called
+    mockShowOptions.assert_not_called
     mockPromptCreateSettings.assert_called_with(cli, True)
 
 
@@ -39,5 +39,5 @@ def test_cli_with_config(mockSettingsExist,
     result = runner.invoke(cli)
 
     assert result.exit_code == 0
-    assert mockPromptCreateSettings.not_called
-    assert mockShowOptions.called
+    mockPromptCreateSettings.assert_not_called
+    mockShowOptions.assert_called
