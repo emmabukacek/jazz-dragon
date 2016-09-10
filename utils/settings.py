@@ -9,7 +9,7 @@ def create():
     Creates initial Jazz Dragon settings.
     """
     with open(get_config_path(), 'w+') as file:
-        json.dump(configs.DEFAULT_SETTINGS, file)
+        json.dump(configs.DEFAULT_SETTINGS, file, indent=2)
 
 
 def edit():
@@ -19,7 +19,7 @@ def edit():
     if not config_exists():
         create()
 
-    click.edit(get_config_path())
+    return click.edit(filename=get_config_path())
 
 
 def get_config_path():
