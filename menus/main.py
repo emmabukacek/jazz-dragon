@@ -1,5 +1,5 @@
 import click
-import menus
+import menus.medium_setup
 import utils.settings
 from constants.display import medium_setup
 
@@ -10,6 +10,6 @@ def display():
     """
     if not utils.settings.config_exists():
         click.echo(medium_setup.INTRO)
-        return menus.display_medium_setup(display)
+        return menus.medium_setup.display(display)
 
     pass

@@ -1,5 +1,5 @@
 import click
-import utils
+import utils.menus
 import sys
 from constants import medium_paths, menu_options
 
