@@ -3,41 +3,17 @@ from dragon import cli
 from mock import patch
 
 
-@patch('utils.settings.settings_exist', return_value=False)
-@patch('utils.settings.prompt_create_settings')
-@patch('dragon.show_options')
-def test_cli_without_config(mockSettingsExist,
-                            mockPromptCreateSettings,
-                            mockShowOptions):
+@patch('utils.display.display_logo')
+@patch('menus.main.display')
+def test_cli(display_logo, display_main_menu):
     """
-    'dragon' command without API configuration
-
-    It should prompt the user to set up their
-    configuration.
+    cli
     """
     runner = CliRunner()
-    result = runner.invoke(cli)
+    runner.invoke(cli)
 
-    assert result.exit_code == 0
-    mockShowOptions.assert_not_called
-    mockPromptCreateSettings.assert_called_with(cli, True)
+    # It should display the logo.
+    display_logo.assert_called_once()
 
-
-@patch('utils.settings.settings_exist', return_value=True)
-@patch('utils.settings.prompt_create_settings')
-@patch('dragon.show_options')
-def test_cli_with_config(mockSettingsExist,
-                         mockPromptCreateSettings,
-                         mockShowOptions):
-    """
-    'dragon' command with API configuration
-
-    It should show the user available application
-    options.
-    """
-    runner = CliRunner()
-    result = runner.invoke(cli)
-
-    assert result.exit_code == 0
-    mockPromptCreateSettings.assert_not_called
-    mockShowOptions.assert_called
+    # It should display the main menu.
+    display_main_menu.assert_called_once()

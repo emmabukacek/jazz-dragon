@@ -1,17 +1,38 @@
-from os.path import expanduser, isfile
-SETTINGS_FILE_NAME = '.jazz_dragon_settings'
+import click
+import json
+import os.path
+from constants import configs
 
 
-def settings_exist():
+def create():
+    """
+    Creates initial Jazz Dragon settings.
+    """
+    with open(get_config_path(), 'w+') as file:
+        json.dump(configs.DEFAULT_SETTINGS, file)
+
+
+def edit():
+    """
+    Edit Jazz Dragon settings.
+    """
+    if not config_exists():
+        create()
+
+    click.edit(get_config_path())
+
+
+def get_config_path():
+    """
+    Return the settings path.
+    """
+    path = '{0}/{1}'.format(os.path.expanduser('~'),
+                            configs.SETTINGS_FILE_NAME)
+    return os.path.normpath(path)
+
+
+def config_exists():
     """
     Check to see if settings exist.
     """
-    home = expanduser('~')
-    return isfile(home + SETTINGS_FILE_NAME)
-
-
-def prompt_create_settings():
-    """
-    Prompt user to create settings.
-    """
-    pass
+    return os.path.isfile(get_config_path())
