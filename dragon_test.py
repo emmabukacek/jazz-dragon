@@ -19,8 +19,8 @@ def test_cli_without_config(mockSettingsExist,
     result = runner.invoke(cli)
 
     assert result.exit_code == 0
-    assert mockPromptCreateSettings.called
     assert mockShowOptions.not_called
+    mockPromptCreateSettings.assert_called_with(cli, True)
 
 
 @patch('utils.settings.settings_exist', return_value=True)
