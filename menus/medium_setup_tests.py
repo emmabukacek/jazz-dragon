@@ -1,5 +1,8 @@
 from constants import menu_options
-from menus.medium_setup import display, get_option_callbacks_map
+from menus.medium_setup import (display,
+                                get_option_callbacks_map,
+                                _edit_settings,
+                                _launch_medium_applications_page)
 from mock import Mock, patch
 
 
@@ -33,3 +36,35 @@ def test_get_option_callbacks_map():
     # It should return an options map.
     for key, value in result.items():
         assert callable(value)
+
+
+@patch('utils.settings.edit')
+def test_edit_settings(edit):
+    """
+    _edit_settings
+    """
+    prev_menu = Mock()
+
+    _edit_settings(prev_menu)
+
+    # It should call the edit method on settings.
+    edit.assert_called_once()
+
+    # It should open the previous menu.
+    prev_menu.assert_called_once()
+
+
+@patch('click.launch')
+def test_launch_medium_applications_page(launch):
+    """
+    _launch_medium_applications_page
+    """
+    prev_menu = Mock()
+
+    _launch_medium_applications_page(prev_menu)
+
+    # It should call the edit method on settings.
+    launch.assert_called_once()
+
+    # It should open the previous menu.
+    prev_menu.assert_called_once()

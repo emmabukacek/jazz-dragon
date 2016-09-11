@@ -40,20 +40,15 @@ def test_edit_with_existing_config(config_exists,
     edit, with an existing config
     """
     config_path = 'Seriously. Adorbs.'
-    return_value = 'Why isn\'t everyone wearing them?'
     get_config_path.return_value = config_path
-    click_edit.return_value = return_value
 
-    result = edit()
+    edit()
 
     # It should not create settings.
     create.assert_not_called()
 
     # It should open the editor with the config_path
     click_edit.assert_called_once_with(filename=config_path)
-
-    # It should return the results of the edit.
-    assert result is return_value
 
 
 @patch('click.edit')
@@ -68,20 +63,15 @@ def test_edit_without_existing_config(config_exists,
     edit, without an existing config
     """
     config_path = 'Okay. Enough about Sailor Pants.'
-    return_value = 'I think...'
     get_config_path.return_value = config_path
-    click_edit.return_value = return_value
 
-    result = edit()
+    edit()
 
     # It should create new settings.
     create.assert_called()
 
     # It should open those settings in the editor.
     click_edit.assert_called_once_with(filename=config_path)
-
-    # It should return the results of the edit.
-    assert result is return_value
 
 
 @patch('os.path.expanduser')
