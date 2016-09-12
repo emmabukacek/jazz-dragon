@@ -1,5 +1,5 @@
 SELECT_OPTION = 'Select an option'
 
-INVALID_OPTION = """
+INVALID_OPTION = '''
 Invalid option selected. Try again.
-"""
+'''
