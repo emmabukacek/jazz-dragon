@@ -2,8 +2,12 @@ language: python
 python:
   - "2.7"
 install:
-  - python setup.py develop
   - pip install -r requirements.txt
   - pip install flake8
+  - pip install python-coveralls
+  - pip install coverage
 before_script: flake8 .
-script: nosetests -v
+script:
+  - python setup.py develop
+  - nosetests -v --with-coverage
+after_success: coveralls
