@@ -47,9 +47,6 @@ def test_generate_menu_with_invalid_input(get_display_text_from_options,
                                           display_invalid_choice,
                                           click_secho,
                                           click_prompt):
-    """
-    generate_menu with invalid user input
-    """
     options = 'Tearing up the bathroom is a party foul.'
     invalid_choice_callback = 'Seriously'
     option_one_method = Mock()
@@ -79,9 +76,6 @@ def test_generate_menu_with_valid_input(get_display_text_from_options,
                                         display_invalid_choice,
                                         click_secho,
                                         click_prompt):
-    """
-    generate_menu with valid user input
-    """
     options = 'Tearing up the bathroom is a party foul.'
     invalid_choice_callback = 'Seriously'
     option_one_method = Mock()
