@@ -9,9 +9,6 @@ from mock import patch
 def test_display_with_existing_config(config_exists,
                                       display_medium_menu,
                                       click_echo):
-    """
-    display
-    """
     display()
 
     # It should not display the medium setup intro.
@@ -27,9 +24,6 @@ def test_display_with_existing_config(config_exists,
 def test_display_without_existing_config(config_exists,
                                          display_medium_menu,
                                          click_echo):
-    """
-    display
-    """
     display()
 
     # It should display the medium setup intro.

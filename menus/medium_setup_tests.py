@@ -9,9 +9,6 @@ from mock import Mock, patch
 @patch('menus.medium_setup.get_option_callbacks_map')
 @patch('utils.menus.generate_menu')
 def test_display(generate_menu, get_options):
-    """
-    display
-    """
     options_map = 'Who cares'
     previous_menu_callback = 'No one.'
     get_options.return_value = options_map
@@ -28,9 +25,6 @@ def test_display(generate_menu, get_options):
 
 
 def test_get_option_callbacks_map():
-    """
-    get_option_callbacks_map
-    """
     result = get_option_callbacks_map(Mock())
 
     # It should return an options map.
@@ -40,9 +34,6 @@ def test_get_option_callbacks_map():
 
 @patch('utils.settings.edit')
 def test_edit_settings(edit):
-    """
-    _edit_settings
-    """
     prev_menu = Mock()
 
     _edit_settings(prev_menu)
@@ -56,9 +47,6 @@ def test_edit_settings(edit):
 
 @patch('click.launch')
 def test_launch_medium_applications_page(launch):
-    """
-    _launch_medium_applications_page
-    """
     prev_menu = Mock()
 
     _launch_medium_applications_page(prev_menu)

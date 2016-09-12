@@ -7,9 +7,6 @@ from utils.menus import (display_invalid_choice,
 
 @patch('click.echo')
 def test_display_invalid_choice(click_echo):
-    """
-    display_invalid_choice
-    """
 
     callback = Mock()
     display_invalid_choice(callback)
@@ -22,9 +19,6 @@ def test_display_invalid_choice(click_echo):
 
 
 def test_get_display_text_from_options():
-    """
-    get_display_text_from_options
-    """
 
     options = {
         'w': 'Wipe',

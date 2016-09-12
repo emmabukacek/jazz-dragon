@@ -10,9 +10,6 @@ from utils.settings import (create,
 @patch('utils.settings.get_config_path')
 def test_create(get_config_path,
                 json_dump):
-    """
-    create
-    """
     config_path = 'Sailor Pants are supah cute.'
     get_config_path.return_value = config_path
 
@@ -36,9 +33,6 @@ def test_edit_with_existing_config(config_exists,
                                    get_config_path,
                                    create,
                                    click_edit):
-    """
-    edit, with an existing config
-    """
     config_path = 'Seriously. Adorbs.'
     get_config_path.return_value = config_path
 
@@ -59,9 +53,6 @@ def test_edit_without_existing_config(config_exists,
                                       get_config_path,
                                       create,
                                       click_edit):
-    """
-    edit, without an existing config
-    """
     config_path = 'Okay. Enough about Sailor Pants.'
     get_config_path.return_value = config_path
 
@@ -77,9 +68,6 @@ def test_edit_without_existing_config(config_exists,
 @patch('os.path.expanduser')
 @patch('os.path.normpath')
 def test_get_config_path(normpath, expanduser):
-    """
-    test_get_config_path
-    """
     root = 'What/about/sailor/moon?'
     expected_path = root + '/' + configs.SETTINGS_FILE_NAME
     expanduser.return_value = root
@@ -91,10 +79,7 @@ def test_get_config_path(normpath, expanduser):
 
 
 @patch('os.path.isfile', return_value=True)
-def test_config_exists_with_file(is_file):
-    """
-    config_exists, and the provided file exists
-    """
+def test_config_exists_with_existing_file(is_file):
     result = config_exists()
 
     # It should return true.
@@ -102,10 +87,7 @@ def test_config_exists_with_file(is_file):
 
 
 @patch('os.path.isfile', return_value=False)
-def test_config_exists_without_file(is_file):
-    """
-    config_exists, and the provided file doesn't exist
-    """
+def test_config_exists_without_existing_file(is_file):
     is_file.return_value = False
     result = config_exists()
 

@@ -6,9 +6,6 @@ from utils.display import display_logo
 @patch('click.secho')
 @patch('pkg_resources.require')
 def test_display_logo(require, click_secho):
-    """
-    display_logo
-    """
     class Package(object):
         version = 'Derp'
 
