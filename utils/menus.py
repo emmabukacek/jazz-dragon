@@ -37,7 +37,7 @@ def generate_menu(options, options_map, invalid_choice_callback):
 
     :param options: Dictionary of options, with keys representing user
         input and values representing display text for each input.
-    :pardisplayam options_map: Dictionary of callbacks, corresponding
+    :param options_map: Dictionary of callbacks, corresponding
         to options param keys.
     :param invalid_choice_callback: Function called when an
         invalid choice is selected.
