@@ -7,15 +7,18 @@ Command line app to interact with Medium.
 
 ## Setup
 
+Install virtualenv (may require `sudo`)
 ```bash
-$ python setup.py
-$ pip install -r requirements.txt
 $ pip install virtualenv
-$ virtualenv env
-$ . venv/bin/activatea
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install -r requirements.txt
+$ python setup.py develop
+$ deactivate
 ```
 
 Give it a try!
-```
+```bash
+$ . venv/bin/activate
 $ dragon
 ```
