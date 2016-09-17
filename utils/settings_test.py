@@ -1,9 +1,6 @@
 from constants import configs
 from mock import patch, mock_open
-from utils.settings import (create,
-                            edit,
-                            get_config_path,
-                            config_exists)
+import utils.settings
 
 
 @patch('json.dump')
@@ -14,7 +11,7 @@ def test_create(get_config_path,
     get_config_path.return_value = config_path
 
     with patch('utils.settings.open', mock_open()) as open_mock:
-        create()
+        utils.settings.create()
 
     # It should open the file and create it if it doesn't exist.
     open_mock.assert_called_once_with(config_path, 'w+')
@@ -36,7 +33,7 @@ def test_edit_with_existing_config(config_exists,
     config_path = 'Seriously. Adorbs.'
     get_config_path.return_value = config_path
 
-    edit()
+    utils.settings.edit()
 
     # It should not create settings.
     create.assert_not_called()
@@ -56,7 +53,7 @@ def test_edit_without_existing_config(config_exists,
     config_path = 'Okay. Enough about Sailor Pants.'
     get_config_path.return_value = config_path
 
-    edit()
+    utils.settings.edit()
 
     # It should create new settings.
     create.assert_called()
@@ -72,7 +69,7 @@ def test_get_config_path(normpath, expanduser):
     expected_path = root + '/' + configs.SETTINGS_FILE_NAME
     expanduser.return_value = root
 
-    get_config_path()
+    utils.settings.get_config_path()
 
     # It should resolve the path based on the user's operating system.
     normpath.assert_called_once_with(expected_path)
@@ -80,7 +77,7 @@ def test_get_config_path(normpath, expanduser):
 
 @patch('os.path.isfile', return_value=True)
 def test_config_exists_with_existing_file(is_file):
-    result = config_exists()
+    result = utils.settings.config_exists()
 
     # It should return true.
     assert result is True
@@ -89,7 +86,35 @@ def test_config_exists_with_existing_file(is_file):
 @patch('os.path.isfile', return_value=False)
 def test_config_exists_without_existing_file(is_file):
     is_file.return_value = False
-    result = config_exists()
+    result = utils.settings.config_exists()
 
     # It should return false.
     assert result is False
+
+
+@patch('json.load')
+@patch('utils.settings.get_config_path')
+def test_load_settings(get_config_path,
+                       json_load):
+    config_path = 'Actually haven\'t watched that show...'
+    new_settings = 'Oh well. New Settings Yo!'
+
+    get_config_path.return_value = config_path
+    json_load.return_value = new_settings
+
+    print(utils.settings._settings)
+
+    with patch('utils.settings.open', mock_open()) as open_mock:
+        return_value = utils.settings.load_settings()
+
+    # It should open the file.
+    open_mock.assert_called_once_with(config_path, 'r+')
+
+    # It should load the file.
+    json_load.assert_called_once_with(open_mock())
+
+    # It should set the settings.
+    assert utils.settings._settings is new_settings
+
+    # It should return loaded settings
+    assert return_value is new_settings
