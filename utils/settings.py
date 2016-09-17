@@ -6,14 +6,14 @@ from constants import configs
 
 def config_exists():
     """
-    Check to see if settings exist.
+    Check if settings exist.
     """
     return os.path.isfile(get_config_path())
 
 
 def create():
     """
-    Creates initial Jazz Dragon settings.
+    Create initial Jazz Dragon settings.
     """
     with open(get_config_path(), 'w+') as file:
         json.dump(configs.DEFAULT_SETTINGS, file, indent=2)
@@ -31,7 +31,7 @@ def edit():
 
 def get_config_path():
     """
-    Return the settings path.
+    Return settings path.
     """
     path = '{0}/{1}'.format(os.path.expanduser('~'),
                             configs.SETTINGS_FILE_NAME)
