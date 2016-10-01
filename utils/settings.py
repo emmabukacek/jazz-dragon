@@ -33,6 +33,5 @@ def get_config_path():
     """
     Return the settings path.
     """
-    path = '{0}/{1}'.format(os.path.expanduser('~'),
-                            configs.SETTINGS_FILE_NAME)
+    path = os.path.join(os.path.expanduser('~'), configs.SETTINGS_FILE_NAME)
     return os.path.normpath(path)
