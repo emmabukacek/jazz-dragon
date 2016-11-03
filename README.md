@@ -1,5 +1,10 @@
 Jazz Dragon
 ===========
+
+### Due to limitations with Medium's API, this repo will no longer be actively maintained unless said functionality is added.
+
+More information here: https://github.com/emmabukacek/jazz-dragon/issues/9
+
 [![Build Status](https://travis-ci.org/emmabukacek/jazz-dragon.svg?branch=develop)](https://travis-ci.org/emmabukacek/jazz-dragon)
 [![Coverage Status](https://coveralls.io/repos/github/emmabukacek/jazz-dragon/badge.svg?branch=develop)](https://coveralls.io/github/emmabukacek/jazz-dragon?branch=develop)
 
@@ -14,7 +19,6 @@ $ virtualenv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
 $ python setup.py develop
-$ deactivate
 ```
 
 Give it a try!
