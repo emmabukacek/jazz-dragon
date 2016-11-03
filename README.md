@@ -1,8 +1,7 @@
 Jazz Dragon
 ===========
 
-# Due to limitations with Medium's API, this repo will no longer be actively maintained
-# unless said functionality is added.
+### Due to limitations with Medium's API, this repo will no longer be actively maintained unless said functionality is added.
 
 More information here: https://github.com/emmabukacek/jazz-dragon/issues/9
 
