@@ -3,6 +3,8 @@ import json
 import os.path
 from constants import configs
 
+_settings = {}
+
 
 def config_exists():
     """
@@ -35,3 +37,15 @@ def get_config_path():
     """
     path = os.path.join(os.path.expanduser('~'), configs.SETTINGS_FILE_NAME)
     return os.path.normpath(path)
+
+
+def load_settings():
+    """
+    Load current settings.
+    """
+    global _settings
+
+    with open(get_config_path(), 'r+') as file:
+        _settings = json.load(file)
+
+    return _settings
